@@ -1,15 +1,37 @@
 @import "tailwindcss";
 
+@layer base {
+  :root {
+    --font-inter: "Inter", system-ui, sans-serif;
+    --font-poppins: "Poppins", sans-serif;
+    --font-noto-sans: "Noto Sans", sans-serif;
+    --font-jersey: "Jersey 10", monospace;
+  }
+
+  body {
+    font-family: var(--font-inter);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2CB6C0 transparent;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: #6366f1;
-  --color-primary-dark: #4f46e5;
-  --color-secondary: #06b6d4;
+  --color-primary: #2CB6C0;
+  --color-primary-dark: #2299a3;
+  --color-secondary: #5D5C5C;
+  --color-muted: #7C7C7C;
+  --color-dark: #191818;
+  --color-dark2: #1A1919;
   --color-accent: #f59e0b;
-  --color-muted: #6b7280;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-poppins: var(--font-poppins);
+  --font-noto: var(--font-noto-sans);
+  --font-jersey: var(--font-jersey);
 }
 
 :root {
@@ -31,5 +53,28 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Hero background column strips */
+.strip.col-up {
+  animation: stripUp 18s linear infinite;
+}
+
+.strip.col-down {
+  animation: stripDown 18s linear infinite;
+  transform: translateY(-50%);
+}
+
+@keyframes stripUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+@keyframes stripDown {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip { animation: none !important; }
 }
